@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
-    private final Connection connection = Util.con();
+    private final Connection connection = Util.getConnection();
 
     public UserDaoJDBCImpl() {
 
@@ -61,7 +61,8 @@ public class UserDaoJDBCImpl implements UserDao {
     public List<User> getAllUsers() {
         List<User> users= new ArrayList<>();
 
-        try (ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM users"))  {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users"))  {
+            ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 User user = new User();
                 user.setId(resultSet.getLong("id"));
