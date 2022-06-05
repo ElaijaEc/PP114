@@ -12,7 +12,7 @@ public class Main {
         userService.saveUser("Vladimir","Kutuzov", (byte) 69);
         userService.getAllUsers();
         userService.removeUserById(1);
-        userService.cleanUsersTable();
-        userService.dropUsersTable();
+        //userService.cleanUsersTable();
+        //userService.dropUsersTable();
     }
 }
