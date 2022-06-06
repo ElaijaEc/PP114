@@ -18,8 +18,18 @@ public class Util {
     private static final String PASSWORD = "Admin";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static SessionFactory sessionFactory = null;
+    public static Connection getConnectionJDBC(){
+        Connection connection;
+        try {
+            connection = DriverManager.getConnection(URL,LOGIN,PASSWORD);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+//
+        return connection;
+    }
 
-    public static SessionFactory getConnection(){
+    public static SessionFactory getConnectionHibernate(){
         try {
             Configuration configuration = new Configuration()
                     .setProperty("hibernate.connection.driver_class",DRIVER)
